@@ -13,12 +13,14 @@ var TEXT_HEIGHT = 16; // высота шрифта
 var textFloor = CLOUD_HEIGHT + CLOUD_Y - GAP; // нижний край текста
 var barFloor = CLOUD_HEIGHT + CLOUD_Y - (GAP * 2 + TEXT_HEIGHT); // нижний край колонок
 
-var renderCloud = function (ctx, x, y, color) {
+// отрисовка облака
+var renderCloud = function(ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-var getMaxElement = function (arr) {
+// поиск максимального числа в массиве
+var getMaxElement = function(arr) {
   var maxElement = arr[0];
   for (var i = 0; i < arr.length; i++) {
     if (arr[i] > maxElement) {
@@ -28,7 +30,40 @@ var getMaxElement = function (arr) {
   return maxElement;
 };
 
-window.renderStatistics = function (ctx, names, times) {
+// получение случайного цвета
+var getRandomColor = function(red, green, blue) {
+  if (red === undefined) {
+    red = (Math.round(Math.random() * 255));
+  }
+  if (green === undefined) {
+    green = (Math.round(Math.random() * 255));
+  }
+  if (blue === undefined) {
+    blue = (Math.round(Math.random() * 255));
+  }
+  var color = 'rgba(' + red + ', ' + green + ', ' + blue + ', ' + Math.random() + ')';
+  return color;
+};
+
+// отрисовка столбика гистограммы
+var drawHistogramBar = function(ctx, color, index, name, time, maxTime) {
+  var actualHeight = MAX_BAR_HEIGHT * time / maxTime; // высота актуальной колонки
+
+  ctx.fillStyle = color;
+  if (name === 'Вы') {
+    ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+  }
+
+  ctx.fillRect(CLOUD_X + BAR_GAP * (index + 1) + BAR_WIDTH * index, barFloor - actualHeight, BAR_WIDTH, actualHeight);
+};
+
+// отрисовка текста (с одинаковой координатой Х)
+var drawText = function(ctx, style, index, text, coordinateY) {
+  ctx.fillStyle = style;
+  ctx.fillText(text, CLOUD_X + BAR_GAP * (index + 1) + BAR_WIDTH * index, coordinateY);
+};
+
+window.renderStatistics = function(ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
@@ -40,19 +75,11 @@ window.renderStatistics = function (ctx, names, times) {
   var maxTime = Math.round(getMaxElement(times)); // максимальное время
 
   for (var i = 0; i < names.length; i++) {
-    var actualHeight = MAX_BAR_HEIGHT * times[i] / maxTime; // высота актуальной колонки
-
-    ctx.fillStyle = '#000';
-    ctx.fillText(names[i], CLOUD_X + BAR_GAP * (i + 1) + BAR_WIDTH * i, textFloor);
-
-    ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
-    if (names[i] === 'Вы') {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    }
-    ctx.fillRect(CLOUD_X + BAR_GAP * (i + 1) + BAR_WIDTH * i, barFloor - actualHeight, BAR_WIDTH, actualHeight);
-
-    ctx.fillStyle = '#000';
-    ctx.fillText(Math.round(times[i]), CLOUD_X + BAR_GAP * (i + 1) + BAR_WIDTH * i, barFloor - GAP - actualHeight);
+    drawText(ctx, '#000', i, names[i], textFloor);
+    drawHistogramBar(ctx, getRandomColor(0, 0, 255), i, names[i], times[i], maxTime);
+    drawText(ctx, '#000', i, Math.round(times[i]), barFloor - GAP - MAX_BAR_HEIGHT * times[i] / maxTime);
   }
 
 };
+
+
