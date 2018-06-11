@@ -14,13 +14,13 @@ var textFloor = CLOUD_HEIGHT + CLOUD_Y - GAP; // нижний край текс�
 var barFloor = CLOUD_HEIGHT + CLOUD_Y - (GAP * 2 + TEXT_HEIGHT); // нижний край колонок
 
 // отрисовка облака
-var renderCloud = function(ctx, x, y, color) {
+var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
 // поиск максимального числа в массиве
-var getMaxElement = function(arr) {
+var getMaxElement = function (arr) {
   var maxElement = arr[0];
   for (var i = 0; i < arr.length; i++) {
     if (arr[i] > maxElement) {
@@ -31,7 +31,7 @@ var getMaxElement = function(arr) {
 };
 
 // получение случайного цвета
-var getRandomColor = function(red, green, blue) {
+var getRandomColor = function (red, green, blue) {
   if (red === undefined) {
     red = (Math.round(Math.random() * 255));
   }
@@ -46,7 +46,7 @@ var getRandomColor = function(red, green, blue) {
 };
 
 // отрисовка столбика гистограммы
-var drawHistogramBar = function(ctx, color, index, name, time, maxTime) {
+var drawHistogramBar = function (ctx, color, index, name, time, maxTime) {
   var actualHeight = MAX_BAR_HEIGHT * time / maxTime; // высота актуальной колонки
 
   ctx.fillStyle = color;
@@ -58,12 +58,12 @@ var drawHistogramBar = function(ctx, color, index, name, time, maxTime) {
 };
 
 // отрисовка текста (с одинаковой координатой Х)
-var drawText = function(ctx, style, index, text, coordinateY) {
+var drawText = function (ctx, style, index, text, coordinateY) {
   ctx.fillStyle = style;
   ctx.fillText(text, CLOUD_X + BAR_GAP * (index + 1) + BAR_WIDTH * index, coordinateY);
 };
 
-window.renderStatistics = function(ctx, names, times) {
+window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, CLOUD_Y, '#fff');
 
