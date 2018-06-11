@@ -70,6 +70,7 @@ var getColor = function (red, green, blue, saturation) {
 /**
  * Рисует столбик гистограммы времен. Высота столбика формируется в зависимости от количества милисекунд. Максимальное время занимает всю высоту гистограммы.
  *
+ * @param {function} ctx - вызов контекста canvas.
  * @param {Object} histogramBar - описание столбика гистограммы, объект со свойствами index, color, name, time.
  * @param {number} histogramBar.index - порядковый номер столбика гистограммы.
  * @param {string} histogramBar.color - цвет столбика гистограммы.
@@ -93,10 +94,10 @@ var drawHistogramBar = function (ctx, histogramBar, maxTime) {
  * Рисует текст на canvas.
  *
  * @param {function} ctx - вызов контекста canvas.
+ * @param {string} text - текст.
  * @param {number} x - координата по оси Х.
  * @param {number} y - координата по оси Y.
- * @param {string} text - текст.
- */
+*/
 var drawText = function (ctx, text, x, y) {
   ctx.font = '16px PT Mono';
   ctx.fillStyle = '#000';
