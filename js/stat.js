@@ -74,7 +74,7 @@ window.renderStatistics = function (ctx, names, times) {
 
   var headingCoordinateX = CLOUD_X + BAR_GAP;
   var firstStringCoordinateY = CLOUD_Y + GAP + TEXT_HEIGHT;
-  var secondStringCoordinateY =  CLOUD_Y + GAP + TEXT_HEIGHT * 2;
+  var secondStringCoordinateY = CLOUD_Y + GAP + TEXT_HEIGHT * 2;
   drawText(ctx, 'Ура вы победили!', headingCoordinateX, firstStringCoordinateY);
   drawText(ctx, 'Список результатов:', headingCoordinateX, secondStringCoordinateY);
 
