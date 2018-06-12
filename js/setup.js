@@ -47,7 +47,7 @@ var getWizards = function (wizardsQuantity) {
       name: generateName(),
       coatColor: randomizeEl(WIZARD_COATS_COLORS),
       eyesColor: randomizeEl(WIZARD_EYES_COLORS)
-    }
+    };
     wizards.push(wizard);
   }
 
