@@ -17,11 +17,11 @@ var randomizeEl = function (arr, unique) {
   var randomEl = arr[index];
 
   if (unique === true) {
-    var removed = arr.splice(index, 1);
+    arr.splice(index, 1);
   }
 
   return randomEl;
-}
+};
 
 /**
  * Генерирует имя волшебника, состоящее из случайного имени и случайной фамилии, расположенных в случайном порядке.
@@ -32,7 +32,7 @@ var generateName = function () {
   var initials = [randomizeEl(WIZARD_NAMES), randomizeEl(WIZARD_SURNAMES)];
   var name = randomizeEl(initials, true) + ' ' + randomizeEl(initials);
   return name;
-}
+};
 
 /**
  * Создает массив волшебников любой длины, со случайными параметрами.
@@ -52,7 +52,7 @@ var getWizards = function (wizardsQuantity) {
   }
 
   return wizards;
-}
+};
 
 /**
  * Создает DOM-элемент, описывающий волшебника.
@@ -74,7 +74,7 @@ var renderWizard = function (wizard) {
   wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
 
   return wizardElement;
-}
+};
 
 /**
  * Отрисовывает на странице волшебников (DOM-элементы) на основе данных массива.
@@ -88,7 +88,7 @@ var drawWizard = function (wizards, place) {
     fragment.appendChild(renderWizard(wizards[i]));
   }
   place.appendChild(fragment);
-}
+};
 
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
