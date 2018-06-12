@@ -43,7 +43,7 @@ var randomizeArray = function (arr) {
  * @return {array} newArr - новый массив из тех же элементов в случайном порядке.
  */
 var randomizeArray2 = function (arr) {
-  var randomCompare = function (a, b) {
+  var randomCompare = function (a, _b) {
     return Math.random() - 0.5;
   };
   var newArr = arr.sort(randomCompare);
