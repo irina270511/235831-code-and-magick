@@ -47,10 +47,10 @@ var getMaxElement = function (arr) {
  * @param {(number|null)} red - красный цвет, число от 0 до 255. Если равен null, то задается случайным образом.
  * @param {(number|null)} green - зеленый цвет, число от 0 до 255. Если равен null, то задается случайным образом.
  * @param {(number|null)} blue - синий цвет, число от 0 до 255. Если равен null, то задается случайным образом.
- * @param {(number|null)} saturation - насыщенность, число от 0 до 1. Если равна null, то задается случайным образом.
+ * @param {(number|null)} opacity - прозрачность, число от 0 до 1. Если равна null, то задается случайным образом.
  * @return {string} color - цвет.
  */
-var getColor = function (red, green, blue, saturation) {
+var getColor = function (red, green, blue, opacity) {
   if (red === null) {
     red = (Math.round(Math.random() * 255));
   }
@@ -60,10 +60,10 @@ var getColor = function (red, green, blue, saturation) {
   if (blue === null) {
     blue = (Math.round(Math.random() * 255));
   }
-  if (saturation === null) {
-    saturation = Math.random();
+  if (opacity === null) {
+    opacity = Math.random();
   }
-  var color = 'rgba(' + red + ', ' + green + ', ' + blue + ', ' + saturation + ')';
+  var color = 'rgba(' + red + ', ' + green + ', ' + blue + ', ' + opacity + ')';
   return color;
 };
 
