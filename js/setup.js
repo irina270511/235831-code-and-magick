@@ -6,19 +6,29 @@ var WIZARD_COATS_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 
 var WIZARD_EYES_COLORS = ['black', 'red', 'blue', 'yellow', 'green'];
 
 /**
- * Выдает случайный элемент из массива. Если второй аргумент указан и true, то элемент не будет повторяться.
+ * Выдает случайный элемент из массива.
  *
  * @param {array} arr - любой массив элементов.
- * @param {boolean} unique - если true, то выданное функцией значение будет удалено из массива. Необязательный аргумент.
+ * @return {string} randomElement - случайный элемент из входящего массива.
+ */
+var randomizeElement = function (arr) {
+  var index = Math.floor(Math.random() * arr.length);
+  var randomElement = arr[index];
+  return randomElement;
+};
+
+//СПОСОБ ПЕРВЫЙ, ИСПРАВИЛА, КОПИРУЮ МАССИВ ПЕРЕД УДАЛЕНИЕМ ЭЛ-ТОВ ИЗ НЕГО
+
+/**
+ * Выдает случайный элемент из массива, удаляя этот элемент из входящего массива.
+ *
+ * @param {array} arr - любой массив элементов.
  * @return {string} randomEl - случайный элемент из входящего массива.
  */
-var randomizeEl = function (arr, unique) {
+var randomizeUniqueElement = function (arr) {
   var index = Math.floor(Math.random() * arr.length);
   var randomEl = arr[index];
-
-  if (unique === true) {
-    arr.splice(index, 1);
-  }
+  arr.splice(index, 1);
 
   return randomEl;
 };
@@ -29,8 +39,9 @@ var randomizeEl = function (arr, unique) {
  * @return {string} name - случайное имя.
  */
 var generateName = function () {
-  var initials = [randomizeEl(WIZARD_NAMES), randomizeEl(WIZARD_SURNAMES)];
-  var name = randomizeEl(initials, true) + ' ' + randomizeEl(initials);
+  var initials = [randomizeElement(WIZARD_NAMES), randomizeElement(WIZARD_SURNAMES)];
+  var copyInitials = [].concat(initials);
+  var name = randomizeUniqueElement(copyInitials) + ' ' + randomizeUniqueElement(copyInitials);
   return name;
 };
 
@@ -45,8 +56,8 @@ var getWizards = function (wizardsQuantity) {
   for (var i = 0; i < wizardsQuantity; i++) {
     var wizard = {
       name: generateName(),
-      coatColor: randomizeEl(WIZARD_COATS_COLORS),
-      eyesColor: randomizeEl(WIZARD_EYES_COLORS)
+      coatColor: randomizeElement(WIZARD_COATS_COLORS),
+      eyesColor: randomizeElement(WIZARD_EYES_COLORS)
     };
     wizards.push(wizard);
   }
