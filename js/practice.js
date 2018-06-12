@@ -4,6 +4,18 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COATS_COLORS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 
+/**
+ * Выдает случайный элемент из массива.
+ *
+ * @param {array} arr - любой массив элементов.
+ * @return {string} randomElement - случайный элемент из входящего массива.
+ */
+var randomizeElement = function (arr) {
+  var index = Math.floor(Math.random() * arr.length);
+  var randomElement = arr[index];
+  return randomElement;
+};
+
 // ПОПЫТАЛАСЬ РЕАЛИЗОВАТЬ ТАСОВАНИЕ ФИШЕРА
 /**
  * Перемешивает массив случайным образом.
@@ -22,7 +34,7 @@ var randomizeArray = function (arr) {
   return newArr;
 };
 
-//ЕЩЕ ОДИН СПОСОБ СОРТИРОВКИ
+// ЕЩЕ ОДИН СПОСОБ СОРТИРОВКИ
 
 /**
  * Перемешивает массив случайным образом.
