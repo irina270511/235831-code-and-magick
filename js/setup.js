@@ -144,7 +144,7 @@ setupClose.addEventListener('click', function () {
 });
 
 setupOpen.addEventListener('keydown', function (evt) {
-  if(evt.keyCode === ENTER_KEYCODE){
+  if (evt.keyCode === ENTER_KEYCODE) {
     openPopup();
   }
 });
